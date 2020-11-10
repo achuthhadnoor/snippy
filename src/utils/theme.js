@@ -1,84 +1,22 @@
-import React, { useState } from 'react'
-import  { createGlobalStyle, ThemeProvider } from 'styled-components'
-import reset from 'styled-reset'
-const GlobalStyle = createGlobalStyle`
-    ${reset}
-* {
-    box-sizing: border-box;
-    touch-action: pan-x pan-y;
-}
-html, body {
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    position: fixed;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-    font-family:sans-serif;
-}
-  body{
-    font-size: 16px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizelegibility;
-    user-select: none;
-    text-size-adjust: none;
-    cursor: default;
-}
-#__next,body{ 
-    height: 100%; 
-    background:#1d1e20;
-    background:linear-gradient(rgb(48 54 49) 0%,rgb(31 35 31) 50%);
-    background:#1A1B1A;
-    transition: opacity 250ms ease 0s;
-} 
-@keyframes comin {
-    
-0% {
-    opacity: 0;
-    transform: translate(0px, -10px);
-    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-} 
-100% {
-    opacity: 1;
-    transform: none;
-}
-}
-button{
-    border:none;
-    align-items:center;
-    border-radius:5px;
-    outline:none;
-    cursor:pointer;
-    transition:box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
-}
-button:hover{
-    opacity:.8;
-}
-button:active{
-    transform: scale(0.96) !important;
-}
-`
-// background:rgba(0,0,0,.4);
-// background-image: url("https://images.unsplash.com/photo-1547185942-2b5661136b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80");
+const theme = {
+  colors: {
+    main: '#003459',
+    mainDark: '#21283e',
+    mainLight: '#2c3247',
+    mainLighter: '#2f82b8',
+    textColor: '#333',
+    whiteColor: '#fff',
+    errorRed: '#ff5757',
+    shadow: 'rgba(0,0,0,.2)',
+  },
 
-const Apptheme = {
-    colors: {
-        primary: '#0070f3',
-    },
-}
+  mediaQueries: {
+    smallest: `only screen and (max-width: 25em)`,
+    small: `only screen and (max-width: 37.5em)`,
+    medium: `only screen and (max-width: 56em)`,
+    large: `only screen and (max-width: 80em)`,
+    largest: `only screen and (max-width: 90em)`,
+  },
+};
 
-const ThemeWrapper = ({ children }) => {
-
-    const [theme, setTheme] = useState(Apptheme);
-    return (
-        <>
-            <GlobalStyle />
-            <ThemeProvider theme={theme}> 
-                    {children} 
-            </ThemeProvider>
-        </>
-    )
-} 
-
-export default ThemeWrapper;
+export default theme;
