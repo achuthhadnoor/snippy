@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
-import { createFirestoreInstance } from 'redux-firestore'
 
 import * as serviceWorker from './serviceWorkerRegistration';
 
@@ -12,23 +10,14 @@ import reportWebVitals from './reportWebVitals';
 import theme from './utils/theme';
 import GlobalStyles from './utils/global'
 import Store from './store'
-import firebase from './utils/firebase'
-
-const rrfProps = {
-    firebase,
-    config: { userProfile: true, useFirestoreForProfile: true },
-    dispatch: Store.dispatch,
-    createFirestoreInstance
-}
+ 
 
 ReactDOM.render(
     <Provider store={Store}>
-        <ReactReduxFirebaseProvider {...rrfProps}>
             <ThemeProvider theme={theme}>
                 <App />
                 <GlobalStyles />
             </ThemeProvider>
-        </ReactReduxFirebaseProvider>
     </Provider>,
     document.getElementById('root')
 );

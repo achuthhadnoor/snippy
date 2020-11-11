@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
-import { firestoreConnect } from 'react-redux-firebase'
+import { connect } from 'react-redux' 
+
 import { taskAdd } from '../store/actions/taskActions'
 import {SignOut} from '../store/actions/authActions'
 
@@ -38,7 +37,7 @@ class Home extends React.Component {
 }
 const mapStateToProps = state => {
     return ({
-    tasks: state.firestore.ordered.tasks
+    tasks: state.tasks
 })}
 const mapDispatchtoProps = dispatch => {
     return {
@@ -46,12 +45,4 @@ const mapDispatchtoProps = dispatch => {
         logout : ()=>dispatch(SignOut())
     }
 }
-export default compose(
-    connect(mapStateToProps, mapDispatchtoProps),
-    firestoreConnect((ownprops) => [
-        {
-            collection: 'tasks',
-            orderby: ["createAt", "desc"]
-        }
-    ])
-)(Home);
+export default connect(mapStateToProps, mapDispatchtoProps)(Home);

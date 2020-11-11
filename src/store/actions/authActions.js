@@ -1,5 +1,6 @@
-export const LoginUser = () => (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
+import firebase from '../../utils/firebase'
+
+export const LoginUser = () => (dispatch) => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase
         .auth()
@@ -15,12 +16,12 @@ export const LoginUser = () => (dispatch, getState, { getFirebase }) => {
             dispatch({ type: 'LOGIN_ERROE', payload: e });
         })
 }
-export const SignOut = () => (dispatch, getState, { getFirebase }) => {
+export const SignOut = () => (dispatch) => {
     const firebase = getFirebase();
     firebase
         .auth()
         .signOut()
-        .then((rawUser) => {
+        .then(() => {
             localStorage.clear();
             dispatch({
                 type: 'LOGOUT',
