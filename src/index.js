@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceworker';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './utils/theme';
