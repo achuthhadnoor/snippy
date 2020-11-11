@@ -17,7 +17,6 @@ export const LoginUser = () => (dispatch) => {
         })
 }
 export const SignOut = () => (dispatch) => {
-    const firebase = getFirebase();
     firebase
         .auth()
         .signOut()
