@@ -10,24 +10,27 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './utils/theme';
 import GlobalStyles from './utils/global'
-import Store from './store'
+import {store,persistor} from './store'
 import firebase from './utils/firebase'
+import { PersistGate } from 'redux-persist/integration/react';
 
 const rrfProps = {
     firebase,
     config: { userProfile: true, useFirestoreForProfile: true },
-    dispatch: Store.dispatch,
+    dispatch: store.dispatch,
     createFirestoreInstance
 }
 
 ReactDOM.render(
-    <Provider store={Store}>
-        <ReactReduxFirebaseProvider {...rrfProps}>
-            <ThemeProvider theme={theme}>
-                <App />
-                <GlobalStyles />
-            </ThemeProvider>
-        </ReactReduxFirebaseProvider>
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+            <ReactReduxFirebaseProvider {...rrfProps}>
+                <ThemeProvider theme={theme}>
+                    <App />
+                    <GlobalStyles />
+                </ThemeProvider>
+            </ReactReduxFirebaseProvider>
+        </PersistGate>
     </Provider>,
     document.getElementById('root')
 );
