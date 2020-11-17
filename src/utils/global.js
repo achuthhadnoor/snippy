@@ -16,7 +16,7 @@ export default createGlobalStyle`
   outline: none;
   }
   html {
-    font-size: 62.5%;
+    font-size: 82.5%;
     box-sizing: border-box;
     --color-main: ${props => props.theme.colors.main}
     --color-mainDark: ${props => props.theme.colors.mainDark};
@@ -33,10 +33,20 @@ export default createGlobalStyle`
       font-size: 55%;
     }
   }
-  body {
-    font-family: 'Roboto', sans-serif;
+  html,body {
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 400;
     line-height: 1.6;
+    height:100%;
+    position:absolute;
+    height:100%;
+    width:100%;
+}
+#root,body{
+    display:flex;
+    flex-direction:column;
+      height:100%;
   }
   a, button {
     cursor: pointer;
@@ -46,4 +56,5 @@ export default createGlobalStyle`
     text-decoration: none;
     font-family: inherit;
   }
+  
 `;

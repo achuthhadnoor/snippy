@@ -34,8 +34,8 @@ AppRouter.propTypes = {
 	dispatch: PropTypes.func.isRequired, 
 };
 
-const mapStateToProps = (state) => { 
-    return({ user: state.firebase.auth })
+const mapStateToProps = (state) => {  
+    return({ user: state.auth.user ? state.auth.user : {}})
 };
 
 export default connect(mapStateToProps)(AppRouter);

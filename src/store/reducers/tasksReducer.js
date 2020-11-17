@@ -1,17 +1,20 @@
  const taskReducer = (state = [],action)=>{
     let {type,payload} = action;
     switch (type) {
-        case 'ADD_TASK':
-            console.log(state);            
-            return{
+        case 'ADD_TASK':  
+        return{
                 ...state,
-                tasks : [...state,payload],
+                tasks : [...state.tasks,payload],
             }
-        case 'TASK_ADD_ERROR' : 
-            console.log(state);
+        case 'TASK_ERROR' :  
             return{
                 ...state,
                 error:payload
+            }
+            case 'GET_TASKS': 
+            return{
+                ...state,
+                tasks:[...payload]
             }
         default:
             return state;

@@ -11,6 +11,7 @@ import theme from './utils/theme';
 import GlobalStyles from './utils/global'
 import Store from './store'
  
+console.log(Store);
 
 ReactDOM.render(
     <Provider store={Store}>

@@ -1,4 +1,4 @@
-import firebase from '../../utils/firebase'
+import firebase  from '../../utils/firebase'
 
 export const LoginUser = () => (dispatch) => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -6,17 +6,17 @@ export const LoginUser = () => (dispatch) => {
         .auth()
         .signInWithPopup(provider)
         .then((rawUser) => {
-            localStorage.setItem("authedUser",rawUser.user.uid)
+            localStorage.setItem("authedUser", rawUser.user.uid)
             dispatch({
                 type: 'LOGIN',
                 payload: rawUser.user
             })
         })
         .catch(e => {
-            dispatch({ type: 'LOGIN_ERROE', payload: e });
+            dispatch({ type: 'LOGIN_ERROR', payload: e });
         })
-}
-export const SignOut = () => (dispatch) => {
+};
+export const SignOut = () => dispatch => {
     firebase
         .auth()
         .signOut()
@@ -28,6 +28,6 @@ export const SignOut = () => (dispatch) => {
             })
         })
         .catch(e => {
-            dispatch({ type: 'LOGIN_ERROE', payload: e });
+            dispatch({ type: 'LOGIN_ERROR', payload: e });
         })
-}
+};

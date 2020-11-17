@@ -47,8 +47,10 @@ AuthedRoute.propTypes = {
 	user: PropTypes.shape({}),
 };
 
-const mapStateToProps = (state) => ({
-	user: state.firebase.auth,
-});
+
+const mapStateToProps = (state) => {  
+    return({ user: state.auth.user ? state.auth.user : {} })
+};
+
 
 export default withRouter(connect(mapStateToProps)(AuthedRoute));

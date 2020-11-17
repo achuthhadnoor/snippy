@@ -28,7 +28,7 @@ UnauthedRoute.propTypes = {
 };
 
 const mapStatetoProps = state=>({
-    uid : state.firebase.auth.uid
+    user:state.auth.user
 })
 
 export default compose( withRouter,connect(mapStatetoProps))(UnauthedRoute);
