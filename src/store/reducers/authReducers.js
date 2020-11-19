@@ -1,22 +1,37 @@
 
-const AuthReducer = (state = {}, action) => {
+let initialState = {};
+if ('authedUser' in localStorage) {
+	try {
+		initialState['authedUser'] = localStorage['authedUser'];
+	} catch (e) {
+		initialState['authedUser'] = null;
+	}
+}
+ 
+const AuthReducer = (state = initialState, action) => {
     let { type, payload } = action
     switch (type) {
         case 'LOGIN':
             return {
-                user: payload
+                ...state,
+                user: {...payload}
             }
         case 'LOGIN_ERROR':
             return {
+                ...state,
                 error: payload
             }
 
         case 'LOGOUT':
             return {
-                user: payload
+                ...state,
+                user: {...payload}
             }
+        case 'UPDATE_USER':
+            debugger
+            return { ...state, user: { ...payload } };
         default:
-           return state;
+            return state;
     }
 }
 

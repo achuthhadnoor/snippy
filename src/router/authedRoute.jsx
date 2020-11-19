@@ -1,9 +1,8 @@
 import { Redirect, Route, withRouter } from 'react-router-dom';
+import Loader from '../components/loader';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-
-const Loader =()=><div>Loading....</div>
 
 class AuthedRoute extends React.Component {
 	render() {
@@ -47,10 +46,8 @@ AuthedRoute.propTypes = {
 	user: PropTypes.shape({}),
 };
 
-
-const mapStateToProps = (state) => {  
-    return({ user: state.auth.user ? state.auth.user : {} })
-};
-
+const mapStateToProps = (state) => ({
+	user: state.user,
+});
 
 export default withRouter(connect(mapStateToProps)(AuthedRoute));

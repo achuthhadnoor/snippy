@@ -16,4 +16,17 @@ if (!firebase.apps.length) {
 
 export const firestore = firebase.firestore();
 
+
+export const GetUserData = dispatch =>{ 
+    debugger;
+    var user = firebase.auth().currentUser;
+    if(!user){
+        user = {}
+    } 
+    return   dispatch({
+        type: 'UPDATE_USER',
+        payload: user
+    })
+} 
+
 export default firebase;

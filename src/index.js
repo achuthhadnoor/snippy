@@ -1,26 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components'
-import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom'; 
 
 import * as serviceWorker from './serviceWorkerRegistration';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import theme from './utils/theme';
-import GlobalStyles from './utils/global'
-import Store from './store'
- 
-console.log(Store);
 
-ReactDOM.render(
-    <Provider store={Store}>
-            <ThemeProvider theme={theme}>
-                <App />
-                <GlobalStyles />
-            </ThemeProvider>
-    </Provider>,
-    document.getElementById('root')
+ReactDOM.render( <App /> , document.getElementById('root')
 );
 
 serviceWorker.register();

@@ -1,8 +1,6 @@
 import { Redirect, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 
 const UnauthedRoute = ({ component: Component, ...rest }) => {
 	return (
@@ -27,8 +25,4 @@ UnauthedRoute.propTypes = {
 	component: PropTypes.elementType,
 };
 
-const mapStatetoProps = state=>({
-    user:state.auth.user
-})
-
-export default compose( withRouter,connect(mapStatetoProps))(UnauthedRoute);
+export default withRouter(UnauthedRoute);
