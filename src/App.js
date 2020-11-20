@@ -2,9 +2,8 @@ import React from 'react';
 import isElectron from 'is-electron';
 import { Provider } from 'react-redux';
 import { createHashHistory, createBrowserHistory } from 'history';
-
-import AppRouter from './router';
 import store from './store';
+import AppRouter from './router' 
 
 let history;
 if (isElectron()) {

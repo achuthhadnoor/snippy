@@ -1,43 +1,58 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 
-import AuthedRoute from './authedRoute';
-import UnauthedRoute from './unAuthedRoute';
+import { getAllData } from '../api'; 
+import AuthedRoute from '../router/authedRoute'
+import UnAuthedRoute from '../router/unAuthedRoute'
+import home from '../pages/home';
+import login from '../pages/login';
+import { ThemeProvider, createGlobalStyle } from 'styled-components'; 
 
-import Home from '../pages/home';
-import Login from '../pages/login';    
-import GlobalStyles from '../utils/global'  
-import { getAllData } from '../api';
-import ThemedWrapper from '../components/themedWrapper';
-
-
-class AppRouter extends Component {  
-    componentDidMount(){  
-            getAllData(this.props.dispatch); 
+const theme = {
+    background:'#121212',
+    color:'#f8f8f8'
+}
+const GlobalStyles = createGlobalStyle`
+    body{
+        background:${props=>props.theme.background};
+        color:${props=>props.theme.color};
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizelegibility;
+        user-select: none;
+        text-size-adjust: none;
+        cursor: default;
+        font-family:sans-serif;
     }
-    
-    render() {
-        return (
-            <ThemedWrapper>
-                <Router >
-                    <div className="app">
-                        <Switch>
-                            <AuthedRoute component={Home} exact path="/" />
-                            <UnauthedRoute
-                                component={Login}
-                                exact
-                                path="/Login"
-                            />
-                            <Route render={() => <div>Not found anything</div>} />
-                        </Switch>
-                    </div>
-                </Router>
-                <GlobalStyles/>
-            </ThemedWrapper>
-        );
+    button{
+        border:none;
+        outline:none;
+        cursor:pointer; 
     }
+`
+
+
+class AppRouter extends Component {
+	componentDidMount() {
+		getAllData(this.props.dispatch);
+	}
+
+	render() {
+		return (
+            <ThemeProvider theme={theme}>
+			<Router history={this.props.history}> 
+					<Switch>
+                        <UnAuthedRoute component={login} path="/login"/> 
+						<AuthedRoute component={home} exact path="/" />
+					</Switch>  
+			</Router>
+            <GlobalStyles/>
+            </ThemeProvider>
+		);
+	}
 }
 
 AppRouter.propTypes = {
@@ -45,6 +60,6 @@ AppRouter.propTypes = {
 	history: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({ user: state.user }) 
+const mapStateToProps = (state) => ({ user: state.user });
 
 export default connect(mapStateToProps)(AppRouter);

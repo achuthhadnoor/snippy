@@ -1,4 +1,3 @@
-
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'; 
 import { offline } from '@redux-offline/redux-offline';
@@ -18,7 +17,7 @@ const store = createStore(
     rootReducer,
     composeEnhancers(
         applyMiddleware(thunk),
-        offline(offlineConfig)
+        // offline(offlineConfig)
     )
 );
 

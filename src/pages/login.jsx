@@ -1,5 +1,5 @@
 import React from 'react'
-import { LoginUser ,SignOut} from '../store/actions/authActions'
+import { loginUser } from '../store/actions/userActions'
 import { connect } from 'react-redux'
 
 
@@ -17,8 +17,8 @@ class Login extends React.Component {
 
 const mapDispatchtoProps = dispatch => {
     return {
-        login: () => dispatch(LoginUser()),
-        logout : ()=>dispatch(SignOut())
+        login: () => dispatch(loginUser()),
+        // logout : ()=>dispatch(SignOut())
     }
 }
 export default connect(null, mapDispatchtoProps)(Login)

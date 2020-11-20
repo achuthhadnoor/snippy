@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { taskAdd, getTasks } from '../store/actions/taskActions'
-import { SignOut } from '../store/actions/authActions'
+import { taskAdd, getTasks } from '../store/actions/taskActions' 
 
 import Header from './header' 
 import Search from './search'
@@ -39,7 +38,7 @@ class Tasks extends React.Component {
 }
 const mapStateToProps = state => { 
     return ({
-        isOnline:state.offline.online,
+        // isOnline:state.offline.online,
         tasks: state.tasks.tasks,
         errors:state.tasks.errors
     })
@@ -48,7 +47,7 @@ const mapDispatchtoProps = dispatch => {
     return {
         addTask: task => dispatch(taskAdd({ task })),
         getTasks: () =>{ dispatch(getTasks())},
-        logout: () => dispatch(SignOut())
+        logout: () => dispatch()
     }
 }
 export default connect(mapStateToProps,mapDispatchtoProps)(Tasks);
