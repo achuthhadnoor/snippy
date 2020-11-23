@@ -1,5 +1,6 @@
 import firebase from '../../utils/firebase'
 import * as actions from '../constants'
+import { LIGHT } from '../../utils/constants';
 
 export const loginUser = () => dispatch => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -38,5 +39,6 @@ const formatUser = ({ user }) => {
         name: user.displayName,
         email: user.email,
         verified: user.emailVerified,
+        theme:LIGHT
     }
 }

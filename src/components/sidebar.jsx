@@ -3,32 +3,8 @@ import styled from 'styled-components'
 
 import Icon from 'react-icons-kit'
 import { plus, command, sun, star, calendar, edit3, atSign, x } from 'react-icons-kit/feather'
+import { connect } from 'react-redux';
 
-import Logo from './Logo' 
-
-export default function Sidebar() {
-    return (
-        <SidebarWrapper>
-            <Logo ontitle />
-            <TaskSidebar />
-        </SidebarWrapper>
-    )
-}
-
-const SidebarWrapper = styled.div`
-    max-width:300px;
-    height:100%;
-    width:100%;
-    padding:10px;
-    display:flex;
-    flex-direction:column;
-    overflow:auto;
-    @media only screen and (max-width: 500px) {
-        &{
-            display:none;
-        }   
-    }
-`
 
 function TaskSidebar({ active, setActive }) {
     const [open, setOpen] = React.useState(false);
@@ -39,7 +15,7 @@ function TaskSidebar({ active, setActive }) {
             <SidebarTitle>Categories</SidebarTitle>
             <SideBarList>
                 <SideBarListItem
-                    active={active === 'TODAY' ? true : false}
+                    active={true}
                     onClick={() => { setActive('TODAY'); setOpen(!open) }}
                 >
                     <IconView icon={sun} style={{ padding: '5px' }} />
@@ -78,6 +54,10 @@ function TaskSidebar({ active, setActive }) {
             <SidebarTitle>Collections</SidebarTitle>
 
             <SideBarList>
+            <SideBarListItem >
+                <IconView icon={plus} style={{ padding: '5px' }} />
+                <span>Create Collection   Alt + <Icon icon={command} /> + T </span>
+            </SideBarListItem>
                 <SideBarListItem
                     active={active === 'TODAY' ? true : false}
                     onClick={() => { setActive('TODAY'); setOpen(!open) }}
@@ -87,10 +67,6 @@ function TaskSidebar({ active, setActive }) {
                 </SideBarListItem>
             </SideBarList>
 
-            <SideBarListItem >
-                <IconView icon={plus} style={{ padding: '5px' }} />
-                <span>Create Collection   Alt + <Icon icon={command} /> + T </span>
-            </SideBarListItem>
         </>
     )
     {/* </SidebarWrapper> */ }
@@ -103,9 +79,9 @@ const IconView = styled(Icon)`
 
 
 const SidebarTitle = styled.div`
-    font-size: .8em;
+    font-size: .9em;
     font-weight:600;
-    color:#808080;
+    color:${props=>props.theme.text1};
     padding-top:0px;    
     margin-top: 20px;
     margin-left: 20px;
@@ -117,9 +93,8 @@ const SidebarTitle = styled.div`
 
 const SideBarList = styled.div`
     list-style: none; 
-    margin: 10px 0px ;
-    color:#f8f8f8;
-    background: rgba(50, 50, 50, 0.37);
+    margin: 10px 0px ; 
+    background:${({theme})=>theme.ternary};
     backdrop-filter: blur(9px);
     padding: 15px 10px;;
     border-radius: 10px;
@@ -127,8 +102,7 @@ const SideBarList = styled.div`
     font-size:.9em;
     transition:all .4s ease-in-out;
     .active{
-        background: #fff;
-        color: #121212;
+        background:${({theme})=>theme.qudraple}; 
     }
     
 }
@@ -139,14 +113,23 @@ const SideBarListItem = styled.button`
     width:100%;
     border-radius: 5px; 
     align-items:center;
-    margin-bottom:7px;
-    color:#fefefe;
-    background:${props => props.active ? '#171717' : 'transparent'};
+    margin-bottom:7px; 
+    color:${props => props.theme.secondary};
+    background:${props => props.active ? props.theme.qudraple : 'transparent'};
+    transition:all .04s ease-in-out;
     &:hover{
-        background:#171717;
+        background:${props => props.theme.qudraple }; 
+    }
+    &:active{
+      transform: scale(0.96) !important;
     }
     span{
         padding:0px 15px;
     }
+
     `;
     // background:rgb(255 255 255 / 5%);
+    const mapStateToProps = ({tasks})=>({
+        tasks
+    })
+export default connect(mapStateToProps)(TaskSidebar);

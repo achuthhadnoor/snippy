@@ -1,10 +1,6 @@
-import { firestore } from '../utils/firebase'
+// import { firestore } from '../utils/firebase'
 import * as actions from '../store/constants'
-
-const Login = () => {
-
-}
-
+ 
 const getUser = (dispatch, userId) => {
     // firestore.collection('users').doc(userId).get().then((snap)=>{
     //     let user = snap.data();

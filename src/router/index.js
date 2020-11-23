@@ -8,32 +8,7 @@ import AuthedRoute from '../router/authedRoute'
 import UnAuthedRoute from '../router/unAuthedRoute'
 import home from '../pages/home';
 import login from '../pages/login';
-import { ThemeProvider, createGlobalStyle } from 'styled-components'; 
-
-const theme = {
-    background:'#121212',
-    color:'#f8f8f8'
-}
-const GlobalStyles = createGlobalStyle`
-    body{
-        background:${props=>props.theme.background};
-        color:${props=>props.theme.color};
-        font-size: 16px;
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizelegibility;
-        user-select: none;
-        text-size-adjust: none;
-        cursor: default;
-        font-family:sans-serif;
-    }
-    button{
-        border:none;
-        outline:none;
-        cursor:pointer; 
-    }
-`
-
+import Theme from '../components/Theme';
 
 class AppRouter extends Component {
 	componentDidMount() {
@@ -42,15 +17,14 @@ class AppRouter extends Component {
 
 	render() {
 		return (
-            <ThemeProvider theme={theme}>
+            <Theme>
 			<Router history={this.props.history}> 
 					<Switch>
-                        <UnAuthedRoute component={login} path="/login"/> 
-						<AuthedRoute component={home} exact path="/" />
+                        <Route component={login} path="/login"/> 
+						<Route component={home}  path="/" /> 
 					</Switch>  
-			</Router>
-            <GlobalStyles/>
-            </ThemeProvider>
+			</Router> 
+            </Theme>
 		);
 	}
 }

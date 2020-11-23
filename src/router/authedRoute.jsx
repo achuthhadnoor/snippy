@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 
 class AuthedRoute extends React.Component {
 	render() {
-		const { component, ...rest } = this.props;
+        const { component, ...rest } = this.props;
+        console.log(rest);
+        
 		const Component = component;
 
 		return (

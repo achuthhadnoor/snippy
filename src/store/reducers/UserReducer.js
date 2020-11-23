@@ -1,5 +1,10 @@
+import { LIGHT } from "../../utils/constants";
 
-const UserReducer = (state = {}, action) => {
+let initialState = {
+    user: { theme: LIGHT }
+}
+
+const UserReducer = (state = initialState, action) => {
     let { type, payload } = action;
     switch (type) {
         case 'UPDATE_USER':

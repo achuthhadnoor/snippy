@@ -17,25 +17,13 @@ export default createGlobalStyle`
   }
   html {
     font-size: 82.5%;
-    box-sizing: border-box;
-    --color-main: ${props => props.theme.colors.main}
-    --color-mainDark: ${props => props.theme.colors.mainDark};
-    --color-mainLight: ${props => props.theme.colors.mainLight};
-    --color-mainLighter: ${props => props.theme.colors.mainLighter};
-    --color-text: ${props => props.theme.colors.textColor};
-    --color-white: ${props => props.theme.colors.whiteColor};
-    --color-errorRed: ${props => props.theme.colors.errorRed};
-    --shadow: ${props => props.theme.colors.shadow};
-    @media ${props => props.theme.mediaQueries.small} {
-      font-size: 60%;
-    }
-    @media ${props => props.theme.mediaQueries.smallest} {
-      font-size: 55%;
-    }
+    box-sizing: border-box; 
+
   }
   html,body {
      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family:"Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 400;
     line-height: 1.6;
     height:100%;
@@ -44,9 +32,11 @@ export default createGlobalStyle`
     width:100%;
 }
 #root,body{
-    display:flex;
-    flex-direction:column;
+    display:flex; 
       height:100%;
+      width:100%;
+      background:${({theme})=>theme.primary};
+      color:${({theme})=>theme.secondary};
   }
   a, button {
     cursor: pointer;
@@ -56,5 +46,7 @@ export default createGlobalStyle`
     text-decoration: none;
     font-family: inherit;
   }
-  
+  button{
+      border:none;
+  }
 `;
