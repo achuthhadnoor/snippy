@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Loader() {
+export default function Login() {
     return (
         <div>
-            Loading....
+            login mate!
         </div>
     )
 }

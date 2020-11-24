@@ -1,0 +1,43 @@
+appId: io.uiuxdx.snippy
+copyright: Copyright © 2020 uiuxdx Inc. All rights reserved.
+productName: snippy
+compression: normal
+directories:
+  buildResources: build
+  output: dist
+files:
+  - "!node_modules"
+mac:
+  category: public.app-category.productivity
+  # entitlements: build/entitlements.mac.plist
+  # provisioningProfile: ../../winds-private/electron/embedded.provisionprofile
+  icon: build/favicons/icon.icns
+  identity: EHV7XZLAHA
+  target:
+    - pkg
+    - dmg
+    - mas
+  publish:
+    # provider: s3
+    # bucket: winds-2.0-releases
+    # path: releases
+mas:
+  entitlements: build/entitlements.mas.plist
+win:
+  target: nsis
+  icon: build/favicons/icon.ico
+  publish:
+    # provider: s3
+    # bucket: winds-2.0-releases
+    # path: releases
+linux:
+  description: Snippy is a powerful Tsk manager that helps you manage tasks in your workflow
+    provided by uiuxdx.achuth.dev.
+  category: Network;Feed
+  target:
+    - snap
+    - AppImage
+  # publish:
+  #   provider: s3
+  #   bucket: winds-2.0-releases
+  #   path: releases

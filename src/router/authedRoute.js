@@ -1,27 +1,24 @@
 import { Redirect, Route, withRouter } from 'react-router-dom';
-import Loader from '../components/loader';
+import Loader from '../components/Loader';
 import PropTypes from 'prop-types';
-import React from 'react';
-import { connect } from 'react-redux';
-
-class AuthedRoute extends React.Component {
-	render() {
-        const { component, ...rest } = this.props;
-        console.log(rest);
-        
+import React from 'react'; 
+import { useAuth } from '../hooks/use-auth';
+ 
+        const AuthedRoute = ()=>{
+		const { component, ...rest } = this.props;
 		const Component = component;
-
+        const {user} = useAuth();
 		return (
-			<Route
-				{...rest}
-				render={(props) => { 
-					if (!localStorage['authedUser']) {
+            <Route
+            {...rest}
+            render={(props) => { 
+                if (!localStorage['authedUser']) {
 						if (this.props.redirect) {
 							return <Redirect to="/login" />;
 						} else {
 							return <div />;
 						}
-					} else if (!this.props.user) {
+					} else if (!user) {
 						if (this.props.showLoader) {
 							return <Loader />;
 						} else {
@@ -34,8 +31,7 @@ class AuthedRoute extends React.Component {
 			/>
 		);
 	}
-}
-
+ 
 AuthedRoute.defaultProps = {
 	redirect: true,
 	showLoader: true,
@@ -44,12 +40,8 @@ AuthedRoute.defaultProps = {
 AuthedRoute.propTypes = {
 	component: PropTypes.elementType,
 	redirect: PropTypes.bool,
-	showLoader: PropTypes.bool,
-	user: PropTypes.shape({}),
+	showLoader: PropTypes.bool
 };
+ 
 
-const mapStateToProps = (state) => ({
-	user: state.user,
-});
-
-export default withRouter(connect(mapStateToProps)(AuthedRoute));
+export default withRouter(AuthedRoute);
